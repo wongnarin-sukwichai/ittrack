@@ -24,7 +24,7 @@
                     <p class="text-sm font-medium leading-snug">{{ errorMessage }}</p>
                 </div>
 
-                <a href="/auth/google"
+                <a :href="u('/auth/google')"
                    class="w-full flex items-center justify-center gap-3 bg-white border-2 border-slate-200 hover:border-indigo-400 hover:bg-indigo-50 text-slate-700 font-semibold py-3 px-4 rounded-xl transition-all shadow-sm hover:shadow-md">
                     <svg class="w-5 h-5" viewBox="0 0 24 24">
                         <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -43,7 +43,7 @@
                 </div>
 
                 <div class="mt-4 text-center">
-                    <a href="/" class="text-xs text-slate-400 hover:text-indigo-600 transition-colors">
+                    <a :href="u('/')" class="text-xs text-slate-400 hover:text-indigo-600 transition-colors">
                         <i class="fa-solid fa-arrow-left mr-1"></i> กลับหน้าแดชบอร์ด (ไม่ต้องล็อกอิน)
                     </a>
                 </div>
@@ -59,6 +59,7 @@
 <script setup>
 import { computed } from 'vue'
 import { Head, usePage } from '@inertiajs/vue3'
+import { u } from '@/lib/url'
 
 const page         = usePage()
 const errorMessage = computed(() => page.props.flash?.error || null)

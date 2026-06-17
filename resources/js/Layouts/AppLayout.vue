@@ -44,7 +44,7 @@
                             </button>
                         </template>
                         <template v-else>
-                            <Link href="/login" class="bg-white text-indigo-700 hover:bg-indigo-50 text-xs font-bold px-4 py-2 rounded-xl flex items-center gap-2 transition-colors shadow-sm">
+                            <Link :href="u('/login')" class="bg-white text-indigo-700 hover:bg-indigo-50 text-xs font-bold px-4 py-2 rounded-xl flex items-center gap-2 transition-colors shadow-sm">
                                 <i class="fa-brands fa-google text-red-500"></i> เข้าสู่ระบบ
                             </Link>
                         </template>
@@ -59,14 +59,14 @@
             <aside class="w-full md:w-64 shrink-0 flex flex-col gap-2">
                 <nav class="space-y-1 bg-white p-3 rounded-2xl border border-slate-200 shadow-sm">
                     <!-- Dashboard - public -->
-                    <Link href="/" :class="navClass('/')">
+                    <Link :href="u('/')" :class="navClass('/')">
                         <span class="flex items-center gap-3"><i class="fa-solid fa-chart-pie text-lg"></i> แดชบอร์ดรวม</span>
                         <i class="fa-solid fa-chevron-right text-xs opacity-70"></i>
                     </Link>
 
                     <!-- Auth-required menus -->
                     <template v-if="$page.props.auth.user">
-                        <Link href="/borrow" :class="navClass('/borrow')">
+                        <Link :href="u('/borrow')" :class="navClass('/borrow')">
                             <span class="flex items-center gap-3 relative">
                                 <i class="fa-solid fa-basket-shopping text-lg"></i> ขอยืมอุปกรณ์
                                 <span v-if="cartCount > 0" class="absolute -top-1.5 -right-2 bg-rose-500 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">{{ cartCount }}</span>
@@ -74,27 +74,27 @@
                             <i class="fa-solid fa-chevron-right text-xs opacity-70"></i>
                         </Link>
 
-                        <Link href="/inventory" :class="navClass('/inventory')">
+                        <Link :href="u('/inventory')" :class="navClass('/inventory')">
                             <span class="flex items-center gap-3"><i class="fa-solid fa-boxes-stacked text-lg"></i> คลังวัสดุอุปกรณ์</span>
                             <i class="fa-solid fa-chevron-right text-xs opacity-70"></i>
                         </Link>
 
-                        <Link href="/tracking" :class="navClass('/tracking')">
+                        <Link :href="u('/tracking')" :class="navClass('/tracking')">
                             <span class="flex items-center gap-3"><i class="fa-solid fa-map-location-dot text-lg"></i> ติดตามสถานะครุภัณฑ์</span>
                             <i class="fa-solid fa-chevron-right text-xs opacity-70"></i>
                         </Link>
 
-                        <Link href="/statistics" :class="navClass('/statistics')">
+                        <Link :href="u('/statistics')" :class="navClass('/statistics')">
                             <span class="flex items-center gap-3"><i class="fa-solid fa-chart-column text-lg"></i> สถิติเชิงลึก</span>
                             <i class="fa-solid fa-chevron-right text-xs opacity-70"></i>
                         </Link>
 
-                        <Link href="/history" :class="navClass('/history')">
+                        <Link :href="u('/history')" :class="navClass('/history')">
                             <span class="flex items-center gap-3"><i class="fa-solid fa-history text-lg"></i> ประวัติรายการยืม-คืน</span>
                             <i class="fa-solid fa-chevron-right text-xs opacity-70"></i>
                         </Link>
 
-                        <Link v-if="$page.props.auth.user.role === 'admin'" href="/admin/return" :class="navClass('/admin/return')">
+                        <Link v-if="$page.props.auth.user.role === 'admin'" :href="u('/admin/return')" :class="navClass('/admin/return')">
                             <span class="flex items-center gap-3 font-semibold text-indigo-600"><i class="fa-solid fa-screwdriver-wrench text-lg"></i> คืนอุปกรณ์</span>
                             <i class="fa-solid fa-chevron-right text-xs opacity-70"></i>
                         </Link>
@@ -135,6 +135,7 @@
 import { computed, provide, reactive } from 'vue'
 import { Link, router, usePage } from '@inertiajs/vue3'
 import { useCart } from '@/composables/useCart'
+import { u } from '@/lib/url'
 
 const page = usePage()
 const { cartCount } = useCart()
@@ -167,7 +168,7 @@ function showToast(message, type = 'success') {
 provide('showToast', showToast)
 
 function doLogout() {
-    router.post('/logout')
+    router.post(u('/logout'))
 }
 </script>
 

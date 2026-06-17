@@ -1,21 +1,32 @@
-@import 'tailwindcss';
+/* 📄 พิกัดไฟล์: resources/css/app.css (ปรับปรุงใหม่เพื่อรองรับ Tailwind v3) */
 
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
-@source "../**/*.blade.php";
-@source "../**/*.js";
-@source "../**/*.vue";
+/* 🌟 สลับมาใช้หัวเรียก 3 ทหารเสือของมาตรฐาน v3 */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@theme {
-    --font-sans: 'Prompt', 'Sarabun', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+/* ❌ ลบออก: พวกคำสั่ง @source ทั้งหมด (เพราะเราย้ายพาธเหล่านี้ไปสั่งในไฟล์ tailwind.config.js เรียบร้อยแล้วครับ) */
+
+/* 🌟 แปลงการตั้งค่าฟอนต์ตัวหนังสือเป็นแบบคลาสของ v3 (หรือถ้าพี่ตั้งค่าใน tailwind.config.js แล้ว ตรงนี้ก็เอาออกได้ครับ) */
+@layer base {
+    html {
+        font-family: 'Prompt', 'Sarabun', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    }
 }
 
-/* Thin scrollbar utility */
+/* ✨ เก็บสไตล์แถบเลื่อนส่วนตัว (Thin scrollbar utility) ของพี่ไว้ใช้งานเหมือนเดิมครับ */
 .scrollbar-thin {
     scrollbar-width: thin;
     scrollbar-color: #cbd5e1 transparent;
 }
-.scrollbar-thin::-webkit-scrollbar { width: 4px; height: 4px; }
-.scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
-.scrollbar-thin::-webkit-scrollbar-thumb { background-color: #cbd5e1; border-radius: 9999px; }
+.scrollbar-thin::-webkit-scrollbar { 
+    width: 4px; 
+    height: 4px; 
+}
+.scrollbar-thin::-webkit-scrollbar-track { 
+    background: transparent; 
+}
+.scrollbar-thin::-webkit-scrollbar-thumb { 
+    background-color: #cbd5e1; 
+    border-radius: 9999px; 
+}
